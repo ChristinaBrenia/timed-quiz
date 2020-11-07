@@ -17,10 +17,10 @@
 let questions = [
     {
         question: 'What is 2+2?',
-        choice1= '2',
-        choice2= '4',
-        choice3= '21',
-        choice4= '6',
+        choice1: '2',
+        choice2: '4',
+        choice3: '21',
+        choice4: '6',
         answer: 4,
 
     },
@@ -29,10 +29,10 @@ let questions = [
 
     {
         question: 'What is 5+2?',
-        choice1= '2',
-        choice2= '4',
-        choice3= '21',
-        choice4= '7',
+        choice1: '2',
+        choice2: '4',
+        choice3: '21',
+        choice4: '7',
         answer: 2,
 
     },
@@ -40,10 +40,10 @@ let questions = [
 
     {
         question: 'What is 9+2?',
-        choice1= '2',
-        choice2= '4',
-        choice3= '21',
-        choice4= '11',
+        choice1: '2',
+        choice2: '4',
+        choice3: '21',
+        choice4: '11',
         answer: 4,
 
     },
@@ -52,10 +52,10 @@ let questions = [
 
     {
         question: 'What is 6+2?',
-        choice1= '2',
-        choice2= '4',
-        choice3= '8',
-        choice4= '18',
+        choice1: '2',
+        choice2: '4',
+        choice3: '8',
+        choice4: '18',
         answer: 3,
 
     },
@@ -63,10 +63,10 @@ let questions = [
 
     {
         question: 'What is 23+2?',
-        choice1= '25',
-        choice2= '4',
-        choice3= '24',
-        choice4= '6',
+        choice1: '25',
+        choice2: '4',
+        choice3: '24',
+        choice4: '6',
         answer: 1,
 
     }
@@ -94,4 +94,41 @@ getNewQuestion = () => {
     questionCounter++
     progressText.innerText = 'Question ${questionCounter} of ${MAX_QUESTIONS}'
     progressBarFull.getElementsByClassName.width = '${ (questionCounter/MAX_QUESTIONS) *100}%'
+
+    const questionsIndex = Math.floor(Math.random()*availableQuestions.length)
+    currentQuestion = availableQuestions[questionsIndex]
+    question.innerText = currentQuestion.question
+
+    choices.forEach(choice => {
+        const number = choice.dataset ['number']
+        choice.innerText = currentQuestion ['choice'+number]
+    })
+
+    availableQuestions.splice(quetionsIndex,1)
+
+    acceptingAnswers = true
 }
+
+choices.forEach(choice => {
+    choice.addEventListener('click', e => {
+    if(!acceptingAnswers) return
+
+    acceptingAnswers = false
+    const selectedChoice = e.target
+    const selectedAnswer = selectedChoice.dataset['number']
+
+    let classToApply = selectedAnswer == currentQuestion.answer ? 'correct':
+    'incorrect'
+
+    if(classToApply === 'correct') {
+        incrementScore(SCORE_POINTS)
+    }
+    selectedChoice.parentElement.classList.add(classToApply)
+
+    setTimeout(()=>{
+        selectedChoice.parentElement.classList.remove(classToApply)
+        getNewQuestion()
+    },1000)
+    })
+})
+
