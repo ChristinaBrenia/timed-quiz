@@ -13,8 +13,10 @@ body {
 .choice-container:hover {
     cursor: pointer;
     box-shadow: blue;
-    transform: scale(1.02);
+    transform: scale(1.01);
+    border:yellowgreen .1rem solid; 
     /* transition: transform 100ms; */
+    margin-bottom: 0.6rem;
 }
 .choice-prefix {
     padding:5px;
