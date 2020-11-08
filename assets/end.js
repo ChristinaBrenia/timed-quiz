@@ -11,6 +11,29 @@ const MAX_HIGH_SCORES = 5
 finalScore.innerText = mostRecentScore
 
 //Enabling save btn when something is typed in
-username.addEventListener('keyup',() => ) {
+username.addEventListener('keyup',() =>  {
+    saveScoreBtn.disabled = !username.value
+
+})
+
+//Saves and displays high scores - one day I will understand this completely
+saveHighScore = e => {
+    e.preventDefault ()
+
+    const score = {
+        score: mostRecentScore,
+        name: username.value
+
+    }
+    highScores.push(score)
+
+    highScores.sort((a,b)=>{
+        return b.score - a.score
+    })
+    //Moves element from array
+    highScores.splice(5)
+
+    localStorage.setItem('highScores',JSON.stringify(highScores))
+    window.location.assign('/')
 
 }
