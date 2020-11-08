@@ -50,6 +50,7 @@ body {
     margin-top:2rem;
     border-radius: 50px;
     overflow: hidden;
+    margin-bottom: 2rem;
 }
 #progressBarFull {
     height:100%;

@@ -21,7 +21,7 @@ let questions = [
         choice2: '4',
         choice3: '21',
         choice4: '6',
-        answer: 4,
+        answer: 2,
 
     },
 
@@ -33,7 +33,7 @@ let questions = [
         choice2: '4',
         choice3: '21',
         choice4: '7',
-        answer: 2,
+        answer: 4,
 
     },
 //Question 3
@@ -74,7 +74,7 @@ let questions = [
 
 // Fixed score and question
 const SCORE_POINTS = 100
-const MAX_Question = 4
+const MAX_QUESTIONS = 4
 
 //Start game function - start score and question at 0 
 startGame = () => {
@@ -86,14 +86,14 @@ startGame = () => {
 }
 //Function to get question
 getNewQuestion = () => {
-    if(availableQuestions.length ===0 || questionsCounter > MAX_Questions) {
+    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore',score)
         return window.location.assign('/end.html')
     }
     //Calculates question on and correspond with percentage completed
     questionCounter++
-    progressText.innerText = 'Question ${questionCounter} of ${MAX_QUESTIONS}'
-    progressBarFull.getElementsByClassName.width = '${ (questionCounter/MAX_QUESTIONS) *100}%'
+    // progressText.innerText = "Question ${questionCounter} of ${MAX_QUESTIONS}"
+    progressBarFull.style.width = '${ (questionCounter/MAX_QUESTIONS) *100}%'
 
     const questionsIndex = Math.floor(Math.random()*availableQuestions.length)
     currentQuestion = availableQuestions[questionsIndex]
@@ -104,7 +104,7 @@ getNewQuestion = () => {
         choice.innerText = currentQuestion ['choice'+number]
     })
 
-    availableQuestions.splice(quetionsIndex,1)
+    availableQuestions.splice(questionsIndex,1)
 
     acceptingAnswers = true
 }
@@ -127,8 +127,16 @@ choices.forEach(choice => {
 
     setTimeout(()=>{
         selectedChoice.parentElement.classList.remove(classToApply)
+        //Get Next Question
         getNewQuestion()
     },1000)
     })
 })
 
+incrementScore = num => {
+    score +=num
+    scoreText.innerText = score
+
+}
+
+startGame()
