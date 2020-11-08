@@ -8,6 +8,7 @@
 
     // questTimer
     let progressBarFull = document.querySelector("#progressBarFull")
+    
 
     let currentQuestion = {}
     let acceptingAnswers = true
@@ -86,23 +87,21 @@ startGame = () => {
     score = 0
     //spread opperator to retrieve question value from array
     availableQuestions = [...questions]
+    //Starts the timer function
+    initBarCount () 
     getNewQuestion()
+    
 }
 //Function to get question
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem('mostRecentScore',score)
         return window.location.assign('assets/end.html')
+        
     }
     //Calculates question on and correspond with percentage completed
     questionCounter++
-//Starts the question timer
-    initBarCount()
 
-//Progress bar = Timer
-
-    // progressText.innerText = "Question ${questionCounter} of ${MAX_QUESTIONS}"
-    // progressBarFull.style.width = '${ (questionCounter/MAX_QUESTIONS) *100}%'
 
     const questionsIndex = Math.floor(Math.random()*availableQuestions.length)
     currentQuestion = availableQuestions[questionsIndex]
@@ -113,9 +112,14 @@ getNewQuestion = () => {
         choice.innerText = currentQuestion ['choice'+number]
     })
 
+    
+
     availableQuestions.splice(questionsIndex,1)
 
     acceptingAnswers = true
+
+    
+
 }
 
 choices.forEach(choice => {
@@ -151,7 +155,7 @@ incrementScore = num => {
 function initBarCount () {
     var divTimeLeft = document.getElementById("progressBarFull")
     var progressText = document.getElementById("progressText")
-    var startTimer = setInterval(barCount,30);
+    var startTimer = setInterval(barCount,300);
     function barCount () {
         if(divTimeLeft.clientWidth < progressText.clientWidth) {
             divTimeLeft.style.width = divTimeLeft.clientWidth + 1 + "px";
