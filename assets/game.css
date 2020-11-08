@@ -8,7 +8,7 @@ body {
     border-radius: 4px;
     background: rgb(18,93,255);
     font-size: 3rem;
-    min-width: 88rem;
+    min-width: 36rem;
 }
 .choice-container:hover {
     cursor: pointer;
@@ -22,6 +22,11 @@ body {
     padding:5px;
     color:white;
 } 
+
+.choice-text {
+    width: 100%;
+    text-align: center;
+}
 .correct {
     background: green;
 }

@@ -164,7 +164,11 @@ function initBarCount () {
             divTimeLeft.style.width = progressText.clientWidth + "px";
             clearInterval (startTimer);
         }
+
+       
+        
     }
 }
+
 
 startGame()
