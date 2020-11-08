@@ -155,7 +155,7 @@ incrementScore = num => {
 function initBarCount () {
     var divTimeLeft = document.getElementById("progressBarFull")
     var progressText = document.getElementById("progressText")
-    var startTimer = setInterval(barCount,300);
+    var startTimer = setInterval(barCount,150);
     function barCount () {
         if(divTimeLeft.clientWidth < progressText.clientWidth) {
             divTimeLeft.style.width = divTimeLeft.clientWidth + 1 + "px";
