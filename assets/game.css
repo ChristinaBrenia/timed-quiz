@@ -51,10 +51,12 @@ body {
     border-radius: 50px;
     overflow: hidden;
     margin-bottom: 2rem;
+    background: yellowgreen;
+    content: "Time Remaining";
 }
 #progressBarFull {
     height:100%;
-    background: yellowgreen;
+    background: red;
     width:0%;
 }
 

@@ -3,7 +3,11 @@
     const choices = Array.from(document.querySelectorAll('.choice-text'));
     const progressText = document.querySelector('#progressText');
     const scoreText = document.querySelector('#score');
-    const progressBarFull = document.querySelector('#progressBarFull');
+    // const progressBarFull = document.querySelector('#progressBarFull');
+
+
+    // questTimer
+    let progressBarFull = document.querySelector("#progressBarFull")
 
     let currentQuestion = {}
     let acceptingAnswers = true
@@ -92,8 +96,13 @@ getNewQuestion = () => {
     }
     //Calculates question on and correspond with percentage completed
     questionCounter++
+//Starts the question timer
+    initBarCount()
+
+//Progress bar = Timer
+
     // progressText.innerText = "Question ${questionCounter} of ${MAX_QUESTIONS}"
-    progressBarFull.style.width = '${ (questionCounter/MAX_QUESTIONS) *100}%'
+    // progressBarFull.style.width = '${ (questionCounter/MAX_QUESTIONS) *100}%'
 
     const questionsIndex = Math.floor(Math.random()*availableQuestions.length)
     currentQuestion = availableQuestions[questionsIndex]
@@ -137,6 +146,21 @@ incrementScore = num => {
     score +=num
     scoreText.innerText = score
 
+}
+
+function initBarCount () {
+    var divTimeLeft = document.getElementById("progressBarFull")
+    var progressText = document.getElementById("progressText")
+    var startTimer = setInterval(barCount,30);
+    function barCount () {
+        if(divTimeLeft.clientWidth < progressText.clientWidth) {
+            divTimeLeft.style.width = divTimeLeft.clientWidth + 1 + "px";
+        }
+        else {
+            divTimeLeft.style.width = progressText.clientWidth + "px";
+            clearInterval (startTimer);
+        }
+    }
 }
 
 startGame()
