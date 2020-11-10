@@ -28,7 +28,7 @@ body {
     text-align: center;
 }
 .correct {
-    background: green;
+    background: yellowgreen;
 }
 .incorrect {
     background: red;
